@@ -4,6 +4,8 @@ const COM_RELACOES = {
 categoria: true,
 tags: { orderBy: { nome: 'asc' } },
 };
+
+// Reutiliza categorias e tags existentes; o banco cria apenas as que forem novas.
 const dadosDaAtracao = ({
 nome,
 descricao,
@@ -59,6 +61,7 @@ where: { atracaoId: atracao.id },
 _avg: { nota: true },
 _count: true,
 });
+	// A média e a contagem são calculadas no banco, sem carregar todas as avaliações.
 res.json({ ...atracao, notaMedia: resumo._avg.nota, totalAvaliacoes: resumo._count });
 }
 export async function criar(req, res) {
@@ -83,14 +86,15 @@ erro: 'Os campos nome, descricao e categoria são obrigatórios',
 }
 const dados = dadosDaAtracao(req.body);
 try {
+		// PUT substitui também as relações: primeiro remove as tags atuais, depois liga as enviadas.
 const atualizada = await prisma.atracao.update({
 where: { id: Number(req.params.id) },
-// set: [] desliga todas as tags atuais antes de ligar as novas
 data: { ...dados, tags: { set: [], connectOrCreate: dados.tags.connectOrCreate } },
 include: COM_RELACOES,
 });
 res.json(atualizada);
 } catch (erro) {
+		// O Prisma sinaliza com P2025 quando o id não existe.
 if (erro.code === 'P2025') {
 return res.status(404).json({ erro: 'Atração não encontrada' });
 }
@@ -102,6 +106,7 @@ try {
 await prisma.atracao.delete({ where: { id: Number(req.params.id) } });
 res.status(204).end();
 } catch (erro) {
+		// Mantém a resposta HTTP consistente para uma atração que já foi removida.
 if (erro.code === 'P2025') {
 return res.status(404).json({ erro: 'Atração não encontrada' });
 }
@@ -127,6 +132,7 @@ atracao: { connect: { id: atracaoId } },
 });
 res.status(201).location(`/atracoes/${atracaoId}`).json(avaliacao);
 } catch (erro) {
+		// A chave estrangeira falha com P2025 quando não há atração para relacionar.
 if (erro.code === 'P2025') {
 return res.status(404).json({ erro: 'Atração não encontrada' });
 }

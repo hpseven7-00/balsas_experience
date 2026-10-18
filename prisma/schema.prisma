@@ -1,7 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
+// Categorias e tags ficam em tabelas próprias para evitar texto duplicado.
 
 generator client {
   provider = "prisma-client-js"
@@ -12,34 +9,38 @@ datasource db {
 }
 
 model Categoria {
-id Int @id @default(autoincrement())
-nome String @unique
-atracoes Atracao[]
+  id       Int       @id @default(autoincrement())
+  nome     String    @unique
+  atracoes Atracao[]
 }
+
 model Tag {
-id Int @id @default(autoincrement())
-nome String @unique
-atracoes Atracao[]
+  id       Int       @id @default(autoincrement())
+  nome     String    @unique
+  atracoes Atracao[]
 }
+
 model Atracao {
-id Int @id @default(autoincrement())
-nome String
-descricao String
-cidade String @default("Balsas")
-estado String @default("MA")
-distanciaCentroKm Int?
-criadaEm DateTime @default(now())
-categoriaId Int
-categoria Categoria @relation(fields: [categoriaId], references: [id])
-tags Tag[]
-avaliacoes Avaliacao[]
+  id                 Int         @id @default(autoincrement())
+  nome               String
+  descricao          String
+  cidade             String      @default("Balsas")
+  estado             String      @default("MA")
+  distanciaCentroKm  Int?
+  criadaEm           DateTime    @default(now())
+  categoriaId        Int
+  categoria          Categoria   @relation(fields: [categoriaId], references: [id])
+  tags               Tag[]
+  avaliacoes         Avaliacao[]
 }
+
 model Avaliacao {
-id Int @id @default(autoincrement())
-visitante String
-nota Int
-comentario String?
-criadaEm DateTime @default(now())
-atracaoId Int
-atracao Atracao @relation(fields: [atracaoId], references: [id], onDelete: Cascade)
+  id         Int      @id @default(autoincrement())
+  visitante  String
+  nota       Int
+  comentario String?
+  criadaEm   DateTime @default(now())
+  atracaoId  Int
+  // Ao excluir uma atração, o banco também remove as avaliações ligadas a ela.
+  atracao    Atracao  @relation(fields: [atracaoId], references: [id], onDelete: Cascade)
 }

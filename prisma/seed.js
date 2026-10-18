@@ -1,5 +1,7 @@
 import { prisma } from '../src/prisma.js';
 import atracoes from '../src/data/atracoes.json' with { type: 'json' };
+
+// Dados de demonstração para o laboratório; este script apaga os registros atuais antes de inserir.
 const avaliacoesDeExemplo = [
 {
 atracao: 'Cachoeira do Macapá',

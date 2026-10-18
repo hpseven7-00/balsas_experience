@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Balsas Experience API | Relatório Final</title>
+  <style>
+    @page { size: A4; margin: 17mm 18mm; }
+    * { box-sizing: border-box; }
+    body { color: #202a37; font: 10.5pt/1.5 Arial, sans-serif; }
+    h1, h2, h3 { color: #152b49; line-height: 1.2; }
+    h1 { font-size: 28pt; margin: 0 0 8mm; }
+    h2 { font-size: 17pt; margin: 0 0 5mm; border-bottom: 2px solid #1f5e9c; padding-bottom: 2mm; }
+    h3 { font-size: 12pt; margin: 5mm 0 2mm; }
+    p { margin: 2.5mm 0; }
+    ul, ol { margin-top: 2mm; padding-left: 6mm; }
+    li { margin: 1mm 0; }
+    code, pre { font-family: Consolas, monospace; }
+    code { background: #eef2f6; padding: 0.5mm 1mm; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #f3f6f9; border: 1px solid #d6dee8; padding: 3mm; font-size: 8.5pt; }
+    table { border-collapse: collapse; width: 100%; margin: 3mm 0 5mm; font-size: 9pt; }
+    th, td { border: 1px solid #cbd5e1; padding: 2mm; text-align: left; vertical-align: top; }
+    th { color: #15365b; background: #eaf1f8; }
+    .cover { min-height: 245mm; display: flex; flex-direction: column; justify-content: center; page-break-after: always; }
+    .eyebrow { color: #52718f; text-transform: uppercase; letter-spacing: 1.4px; font-size: 9pt; }
+    .rule { width: 42mm; border-top: 4px solid #1f5e9c; margin: 5mm 0 12mm; }
+    .subtitle { font-size: 15pt; color: #536477; }
+    .institution { font-size: 12pt; margin-top: 15mm; }
+    .section { margin-bottom: 8mm; }
+    .page { page-break-before: always; }
+    .pending { border-left: 4px solid #c77713; background: #fff6e8; padding: 3mm 4mm; margin: 3mm 0; }
+    .evidence { border: 1.5px dashed #8293a6; min-height: 35mm; padding: 4mm; margin: 3mm 0; color: #576779; }
+    .small { font-size: 8.5pt; color: #526174; }
+    .nowrap { white-space: nowrap; }
+    .no-break { break-inside: avoid; }
+    @media screen {
+      body { max-width: 850px; margin: 30px auto; padding: 35px; box-shadow: 0 2px 18px #0002; }
+      .cover { min-height: 850px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="cover">
+    <div class="eyebrow">Programação para Web · Entrega Final</div>
+    <div class="rule"></div>
+    <h1>Balsas Experience API</h1>
+    <p class="subtitle">API REST de atrações turísticas de Balsas-MA</p>
+    <p class="institution"><strong>Centro Universitário Unibalsas</strong><br>
+      Análise e Desenvolvimento de Sistemas · Programação para Web<br>
+      Professor Marcos David Souza Ramos</p>
+    <p>Data: 17 de outubro de 2026</p>
+    <div class="pending"><strong>Rascunho para completar:</strong> faltam matrícula/contribuições da equipe, URL publicada, capturas reais de funcionamento e relatos pessoais. Substitua os campos pendentes antes da submissão.</div>
+  </header>
+
+  <section class="section">
+    <h2>1. Identificação</h2>
+    <table><tbody>
+      <tr><th>Instituição</th><td>Centro Universitário Unibalsas</td></tr>
+      <tr><th>Curso</th><td>Análise e Desenvolvimento de Sistemas (ADS)</td></tr>
+      <tr><th>Disciplina</th><td>Programação para Web</td></tr>
+      <tr><th>Professor</th><td>Marcos David Souza Ramos</td></tr>
+      <tr><th>Projeto</th><td>Balsas Experience API</td></tr>
+      <tr><th>Data</th><td>17 de outubro de 2026</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="section">
+    <h2>2. A equipe</h2>
+    <table><thead><tr><th>Nome completo</th><th>Matrícula</th><th>Contribuição no projeto</th></tr></thead>
+      <tbody>
+        <tr><td>Hágape Latan</td><td>A informar</td><td>A equipe deve descrever a contribuição individual real.</td></tr>
+        <tr><td>Adicionar integrante, se houver</td><td>A informar</td><td>Descrever contribuição.</td></tr>
+      </tbody>
+    </table>
+    <p class="small">Remova a linha de integrante adicional se o trabalho for individual. Inclua todos os participantes da equipe.</p>
+  </section>
+
+  <section class="section">
+    <h2>3. Descrição do projeto</h2>
+    <p>A Balsas Experience API disponibiliza informações estruturadas sobre atrações turísticas de Balsas, Maranhão. Aplicativos, páginas web e clientes HTTP podem consultar locais históricos, opções de lazer e experiências de natureza e aventura, com descrição, localização, categoria, tags e distância do centro quando conhecida.</p>
+    <p>A API atende quem precisa integrar essas informações a uma interface sem acessar diretamente arquivos ou tabelas. Além da listagem e dos filtros por categoria, tag e texto, oferece operações para cadastrar, atualizar e remover atrações, registrar avaliações e consultar categorias com contagem de atrações. O PostgreSQL mantém os dados entre reinicializações do servidor.</p>
+  </section>
+
+  <section class="section page">
+    <h2>4. Tecnologias utilizadas</h2>
+    <table><thead><tr><th>Tecnologia</th><th>Versão declarada/ambiente</th><th>Finalidade</th></tr></thead><tbody>
+      <tr><td>Node.js</td><td>22 ou superior (LTS recomendado)</td><td>Executa a aplicação JavaScript no servidor.</td></tr>
+      <tr><td>Express</td><td>^5.2.1</td><td>Define endpoints HTTP e middleware.</td></tr>
+      <tr><td>Prisma CLI</td><td>7.10.0</td><td>Valida o schema e cria/aplica migrações.</td></tr>
+      <tr><td>Prisma Client</td><td>7.10.0</td><td>Executa consultas e operações no banco.</td></tr>
+      <tr><td>@prisma/adapter-pg</td><td>7.10.0</td><td>Conecta o cliente Prisma ao driver PostgreSQL.</td></tr>
+      <tr><td>PostgreSQL</td><td>Versão do provedor a confirmar</td><td>Armazena atrações, categorias, tags e avaliações.</td></tr>
+      <tr><td>pg</td><td>^8.16.3</td><td>Driver Node.js para PostgreSQL.</td></tr>
+      <tr><td>dotenv</td><td>^17.2.3</td><td>Carrega `DATABASE_URL` do `.env` local.</td></tr>
+      <tr><td>Chrome</td><td>Ferramenta de exportação local</td><td>Renderiza este relatório em PDF.</td></tr>
+    </tbody></table>
+    <p class="small">As versões de pacotes são as declaradas no <code>package.json</code>. Registre também as versões efetivamente usadas na máquina de desenvolvimento, se solicitado.</p>
+  </section>
+
+  <section class="section">
+    <h2>5. Modelo de dados</h2>
+    <table><thead><tr><th>Tabela</th><th>Campos</th><th>Relações</th></tr></thead><tbody>
+      <tr><td>Categoria</td><td><code>id</code>, <code>nome</code> único</td><td>Uma categoria classifica várias atrações.</td></tr>
+      <tr><td>Atracao</td><td><code>id</code>, <code>nome</code>, <code>descricao</code>, <code>cidade</code>, <code>estado</code>, <code>distanciaCentroKm</code> opcional, <code>criadaEm</code>, <code>categoriaId</code></td><td>Pertence a uma categoria; relaciona-se a várias tags e avaliações.</td></tr>
+      <tr><td>Tag</td><td><code>id</code>, <code>nome</code> único</td><td>Relação muitos-para-muitos com atrações por meio de <code>_AtracaoToTag</code>.</td></tr>
+      <tr><td>Avaliacao</td><td><code>id</code>, <code>visitante</code>, <code>nota</code>, <code>comentario</code> opcional, <code>criadaEm</code>, <code>atracaoId</code></td><td>Pertence a uma atração; exclusão da atração remove avaliações relacionadas.</td></tr>
+    </tbody></table>
+    <p>As tags são uma tabela separada porque várias atrações podem compartilhar uma tag e cada atração pode ter várias tags; a tabela de ligação representa essa relação sem armazenar arrays ou repetir nomes nos registros.</p>
+  </section>
+
+  <section class="section page">
+    <h2>6. Endpoints da API</h2>
+    <table><thead><tr><th>Método</th><th>Caminho</th><th>Função</th><th>Status esperado</th></tr></thead><tbody>
+      <tr><td>GET</td><td><code>/</code></td><td>Identificação da API</td><td>200</td></tr>
+      <tr><td>GET</td><td><code>/health</code></td><td>Estado da aplicação</td><td>200</td></tr>
+      <tr><td>GET</td><td><code>/atracoes</code></td><td>Lista; aceita <code>categoria</code>, <code>tag</code> e <code>q</code></td><td>200</td></tr>
+      <tr><td>GET</td><td><code>/atracoes/:id</code></td><td>Busca atração, relações e resumo das avaliações</td><td>200, 404</td></tr>
+      <tr><td>POST</td><td><code>/atracoes</code></td><td>Cria atração</td><td>201, 400</td></tr>
+      <tr><td>PUT</td><td><code>/atracoes/:id</code></td><td>Substitui atração e tags</td><td>200, 400, 404</td></tr>
+      <tr><td>DELETE</td><td><code>/atracoes/:id</code></td><td>Remove atração e avaliações relacionadas</td><td>204, 404</td></tr>
+      <tr><td>POST</td><td><code>/atracoes/:id/avaliacoes</code></td><td>Cria avaliação (nota de 1 a 5)</td><td>201, 400, 404</td></tr>
+      <tr><td>GET</td><td><code>/categorias</code></td><td>Lista categorias com contagem de atrações</td><td>200</td></tr>
+    </tbody></table>
+    <h3>Exemplo de requisição</h3>
+    <pre>POST /atracoes
+Content-Type: application/json
+
+{
+  "nome": "Parque de Lazer",
+  "descricao": "Espaço destinado ao lazer e à convivência.",
+  "categoria": "Lazer",
+  "cidade": "Balsas",
+  "estado": "MA",
+  "distanciaCentroKm": 3,
+  "tags": ["lazer", "família", "parque"]
+}</pre>
+    <h3>Exemplo de resposta (201 Created)</h3>
+    <pre>{
+  "id": 9,
+  "nome": "Parque de Lazer",
+  "descricao": "Espaço destinado ao lazer e à convivência.",
+  "cidade": "Balsas",
+  "estado": "MA",
+  "distanciaCentroKm": 3,
+  "criadaEm": "2026-10-17T12:00:00.000Z",
+  "categoriaId": 2,
+  "categoria": { "id": 2, "nome": "Lazer" },
+  "tags": [
+    { "id": 1, "nome": "lazer" },
+    { "id": 2, "nome": "família" },
+    { "id": 16, "nome": "parque" }
+  ]
+}</pre>
+    <p class="small">Os valores de ID e data acima são ilustrativos; o banco gera os IDs e a data real. Uma resposta real à requisição inclui as tags enviadas e seus IDs.</p>
+  </section>
+
+  <section class="section page">
+    <h2>7. Como executar o projeto</h2>
+    <ol>
+      <li>Clone o repositório e entre na pasta:</li>
+    </ol>
+    <pre>git clone https://github.com/hpseven7-00/balsas_experience.git
+cd balsas_experience
+npm ci</pre>
+    <ol start="2"><li>Crie um banco PostgreSQL e copie <code>.env.example</code> para <code>.env</code>. No arquivo local, configure a connection string do seu banco:</li></ol>
+    <pre>DATABASE_URL="postgresql://USUARIO:SENHA@HOST/neondb?sslmode=require"</pre>
+    <p>Use credenciais próprias, mantenha o arquivo <code>.env</code> fora do Git e nunca compartilhe sua senha.</p>
+    <ol start="3"><li>Aplique as migrações existentes e gere o cliente:</li></ol>
+    <pre>npm run build</pre>
+    <ol start="4"><li>Popule o banco de desenvolvimento e inicie a API:</li></ol>
+    <pre>npm run seed
+npm run dev</pre>
+    <p>A API local ficará em <code>http://localhost:3000</code>. O seed apaga os registros antes de inserir os dados de exemplo; execute somente em banco vazio ou descartável.</p>
+  </section>
+
+  <section class="section">
+    <h2>8. Evidências de funcionamento</h2>
+    <p>Inserir capturas reais do cliente HTTP e da publicação. Não há capturas nos arquivos recebidos; as áreas abaixo são marcadores, não evidências.</p>
+    <div class="evidence"><strong>PENDENTE — listagem (200)</strong><br>Captura do cliente HTTP mostrando <code>GET /atracoes</code> e a resposta.</div>
+    <div class="evidence"><strong>PENDENTE — busca inexistente (404)</strong><br>Captura de <code>GET /atracoes/9999</code> com a resposta de erro.</div>
+    <div class="evidence"><strong>PENDENTE — criação (201)</strong><br>Captura de <code>POST /atracoes</code>, corpo enviado e resposta com <code>Location</code>.</div>
+    <div class="evidence"><strong>PENDENTE — remoção (204)</strong><br>Captura de <code>DELETE /atracoes/:id</code> com status 204 e sem corpo.</div>
+    <div class="evidence"><strong>PENDENTE — API publicada</strong><br>Captura do endereço público respondendo, preferencialmente em <code>/health</code> e <code>/atracoes</code>.</div>
+  </section>
+
+  <section class="section">
+    <h2>9. Links</h2>
+    <p><strong>Repositório:</strong> <a href="https://github.com/hpseven7-00/balsas_experience">https://github.com/hpseven7-00/balsas_experience</a></p>
+    <p><strong>API publicada:</strong> <span class="pending">PENDENTE — informar a URL pública do serviço.</span></p>
+  </section>
+
+  <section class="section page">
+    <h2>10. Dificuldades e aprendizados</h2>
+    <p>O projeto substitui o armazenamento temporário em JSON por um modelo relacional. Uma decisão importante foi representar tags em uma relação muitos-para-muitos, usando tabela de ligação, em vez de guardar uma lista dentro da atração. O Prisma simplifica essa relação no código, mas o schema e as migrações deixam explícita a estrutura criada no PostgreSQL.</p>
+    <p>Na escrita, <code>connectOrCreate</code> reaproveita categorias e tags sem duplicá-las; no <code>PUT</code>, as tags anteriores precisam ser desligadas para que a operação realmente substitua o recurso. A avaliação também exige validar a nota antes de gravar e traduzir o erro de registro inexistente do Prisma para o status HTTP 404.</p>
+    <div class="pending"><strong>Relato pessoal pendente:</strong> cada integrante deve registrar uma dificuldade que realmente enfrentou, como resolveu e o que aprendeu. Não submeta este texto técnico como se fosse um relato individual.</div>
+    <table><thead><tr><th>Integrante</th><th>Dificuldade e solução</th><th>Aprendizado individual</th></tr></thead><tbody>
+      <tr><td>Hágape Latan</td><td>A preencher pela pessoa.</td><td>A preencher pela pessoa.</td></tr>
+      <tr><td>Demais integrantes</td><td>A preencher por cada pessoa.</td><td>A preencher por cada pessoa.</td></tr>
+    </tbody></table>
+  </section>
+</body>
+</html>

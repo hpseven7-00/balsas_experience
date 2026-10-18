@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Categoria {
+id Int @id @default(autoincrement())
+nome String @unique
+atracoes Atracao[]
+}
+model Tag {
+id Int @id @default(autoincrement())
+nome String @unique
+atracoes Atracao[]
+}
+model Atracao {
+id Int @id @default(autoincrement())
+nome String
+descricao String
+cidade String @default("Balsas")
+estado String @default("MA")
+distanciaCentroKm Int?
+criadaEm DateTime @default(now())
+categoriaId Int
+categoria Categoria @relation(fields: [categoriaId], references: [id])
+tags Tag[]
+avaliacoes Avaliacao[]
+}
+model Avaliacao {
+id Int @id @default(autoincrement())
+visitante String
+nota Int
+comentario String?
+criadaEm DateTime @default(now())
+atracaoId Int
+atracao Atracao @relation(fields: [atracaoId], references: [id], onDelete: Cascade)
+}
